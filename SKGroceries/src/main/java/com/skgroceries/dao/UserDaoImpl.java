@@ -133,33 +133,36 @@ public class UserDaoImpl implements IUserDao {
 
 	@Override
 	public void updatePurchase(List<Cart> products) {
-		PreparedStatement statement = null;
+		PreparedStatement statement1 = null;
+		PreparedStatement statement2 = null;
 		Connection connection = DbConnection.openConnection();
 		ResultSet resultSet=null;
 		try {
 		for (Cart product : products) {
 			int count=0;
-			statement =  connection.prepareStatement(UserQueries.QUERYFORCOUNT);
-			statement.setInt(1,product.getProductId());
-			resultSet =  statement.executeQuery();
+			statement1 =  connection.prepareStatement(UserQueries.QUERYFORCOUNT);
+			statement1.setInt(1,product.getProductId());
+			resultSet =  statement1.executeQuery();
 			while(resultSet.next()) {
 				count = resultSet.getInt(1);
 			}
-			statement = connection.prepareStatement(UserQueries.QUERYFORUPDATE);
-			statement.setInt(1, count);
-			statement.setInt(2, product.getQuantity());
-			statement.setInt(3, product.getProductId());
+			statement2 = connection.prepareStatement(UserQueries.QUERYFORUPDATE);
+			statement2.setInt(1, count);
+			statement2.setInt(2, product.getQuantity());
+			statement2.setInt(3, product.getProductId());
 			
-			statement.execute();
+			statement2.execute();
 		}
 		}catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
 			try {
-				if (statement != null)
-					statement.close();
+				if (statement1 != null)
+					statement1.close();
+				if (statement2 != null)
+					statement2.close();
 				if(resultSet != null)
-					statement.close();
+					resultSet.close();
 
 			} catch (SQLException e) {
 				e.printStackTrace();
