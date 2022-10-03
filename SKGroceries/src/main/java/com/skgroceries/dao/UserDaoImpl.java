@@ -14,10 +14,11 @@ import com.skgroceries.util.UserQueries;
 
 public class UserDaoImpl implements IUserDao {
 
-	PreparedStatement statement = null;
+
 	
 	@Override
 	public boolean addUser(User user) {
+		PreparedStatement statement = null;
 		Connection connection = DbConnection.openConnection();
 		int result =0;
 		try {
@@ -55,6 +56,7 @@ public class UserDaoImpl implements IUserDao {
 
 	@Override
 	public int loginValidation(String userName, String password) {
+		PreparedStatement statement = null;
 		int result = 0;
 		ResultSet resultSet=null;
 		Connection connection = DbConnection.openConnection();
@@ -90,6 +92,7 @@ public class UserDaoImpl implements IUserDao {
 
 	@Override
 	public Product getPurchaseProduct(int productId, int quantity) {
+		PreparedStatement statement = null;
 		Product product = new Product();
 		ResultSet resultSet=null;
 		Connection connection = DbConnection.openConnection();
@@ -130,11 +133,12 @@ public class UserDaoImpl implements IUserDao {
 
 	@Override
 	public void updatePurchase(List<Cart> products) {
+		PreparedStatement statement = null;
 		Connection connection = DbConnection.openConnection();
 		ResultSet resultSet=null;
 		try {
 		for (Cart product : products) {
-			int count = 0;
+			int count=0;
 			statement =  connection.prepareStatement(UserQueries.QUERYFORCOUNT);
 			statement.setInt(1,product.getProductId());
 			resultSet =  statement.executeQuery();

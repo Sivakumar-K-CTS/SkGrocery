@@ -14,11 +14,12 @@ import com.skgroceries.util.ProductMapperImpl;
 import com.skgroceries.util.ProductQueries;
 
 public class ProductDaoImpl implements IProductDao {
-	PreparedStatement statement = null;
+	
 	IProductMapper productmapRowper = new ProductMapperImpl();
 
 	@Override
 	public boolean addProduct(Product product) {
+		PreparedStatement statement = null;
 		Connection connection = DbConnection.openConnection();
 		boolean result = false;
 		try {
@@ -57,6 +58,7 @@ public class ProductDaoImpl implements IProductDao {
 
 	@Override
 	public boolean deleteProduct(int id) {
+		PreparedStatement statement = null;
 		Connection connection = DbConnection.openConnection();
 		boolean result = false;
 		try {
@@ -86,6 +88,7 @@ public class ProductDaoImpl implements IProductDao {
 
 	@Override
 	public boolean updateProduct(int id, double price) {
+		PreparedStatement statement = null;
 		Connection connection = DbConnection.openConnection();
 		boolean result = false;
 		try {
@@ -115,6 +118,7 @@ public class ProductDaoImpl implements IProductDao {
 
 	@Override
 	public Product findById(int id) {
+		PreparedStatement statement = null;
 		Connection connection = DbConnection.openConnection();
 		Product product = new Product();
 		ResultSet resultSet=null;
@@ -163,6 +167,7 @@ public class ProductDaoImpl implements IProductDao {
 
 	@Override
 	public List<Product> findAllProducts() {
+		PreparedStatement statement = null;
 		Connection connection = DbConnection.openConnection();
 		List<Product> productList = new ArrayList<>();
 		ResultSet resultSet=null;
@@ -192,6 +197,7 @@ public class ProductDaoImpl implements IProductDao {
 
 	@Override
 	public List<Product> findByCategory(String category) {
+		PreparedStatement statement = null;
 		Connection connection = DbConnection.openConnection();
 		List<Product> producetList = new ArrayList<>();
 		ResultSet resultSet=null;
@@ -221,6 +227,7 @@ public class ProductDaoImpl implements IProductDao {
 
 	@Override
 	public List<Product> findByBrand(String brand) {
+		PreparedStatement statement = null;
 		Connection connection = DbConnection.openConnection();
 		List<Product> productList = new ArrayList<>();
 		ResultSet resultSet=null;
@@ -249,6 +256,7 @@ public class ProductDaoImpl implements IProductDao {
 
 	@Override
 	public List<Product> findByNameContaining(String productName) {
+		PreparedStatement statement = null;
 		Connection connection = DbConnection.openConnection();
 		List<Product> productList = new ArrayList<>();
 		ResultSet resultSet=null;
@@ -279,6 +287,7 @@ public class ProductDaoImpl implements IProductDao {
 
 	@Override
 	public List<Product> findByNameAndQuantity(String productName, int quantity) {
+		PreparedStatement statement = null;
 		Connection connection = DbConnection.openConnection();
 		List<Product> productList = new ArrayList<>();
 		ResultSet resultSet=null;
