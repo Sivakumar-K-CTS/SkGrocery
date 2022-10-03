@@ -10,10 +10,10 @@ import com.skgroceries.model.Cart;
 import com.skgroceries.model.Category;
 import com.skgroceries.model.Product;
 import com.skgroceries.model.User;
-import com.skgroeries.service.IProductService;
-import com.skgroeries.service.ProductServiceImpl;
-import com.skgroeries.service.IUserService;
-import com.skgroeries.service.UserServiceImpl;
+import com.skgroceries.service.IProductService;
+import com.skgroceries.service.IUserService;
+import com.skgroceries.service.ProductServiceImpl;
+import com.skgroceries.service.UserServiceImpl;
 
 public class Client {
 

@@ -1,4 +1,4 @@
-package com.skgroeries.service;
+package com.skgroceries.service;
 
 import java.util.List;
 
