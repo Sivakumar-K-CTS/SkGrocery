@@ -12,6 +12,10 @@ import com.skgroceries.model.User;
 public class UserServiceImpl implements IUserService {
 
 	IUserDao userDao = new UserDaoImpl();
+	/**
+	 * 
+	 */
+	
 	@Override
 	public int loginValidation(String username, String password) throws UserNotFoundException {
 		int loginResult = userDao.loginValidation(username, password);
