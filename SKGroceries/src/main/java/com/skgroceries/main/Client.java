@@ -30,7 +30,7 @@ public class Client {
 		IUserService userService = new UserServiceImpl();
 		IPurchaseService purchaseService = new PurchaseServiceImpl();
 		System.out.println("Welcome to SK-Groceries!!!");
-		System.out.println("Press 1 for New User (OR) Press 2 for Existing User");
+		System.out.println("Press 1 for New User (OR) Press 2 for Existing User (OR)Press 3 if you Forget Password");
 		int userType = sc.nextInt();
 		sc.nextLine();
 		if (userType == 1) { 
@@ -256,7 +256,23 @@ public class Client {
 			}
 			sc.close();
 
-		} else {
+		}else if(userType == 3) {
+			System.out.println("Enter the Mobile Number:");
+			long phone = sc.nextLong();
+			sc.nextLine();
+			System.out.println("Enter the New Password:");
+			String password = sc.nextLine();
+			try {
+				boolean result = userService.changePassword(phone, password);
+				if(result) {
+					System.out.println("Password has been Successfully!!!");
+				}
+			} catch (UserNotFoundException e) {
+				System.out.println(e.getMessage());
+			}
+			
+			
+		}else {
 			System.out.println("Invalid User!!!");
 		}
 	}

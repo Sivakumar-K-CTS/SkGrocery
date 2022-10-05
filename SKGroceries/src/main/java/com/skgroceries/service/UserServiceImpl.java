@@ -26,5 +26,21 @@ public class UserServiceImpl implements IUserService {
 		return userDao.addUser(user);
 	}
 
+	/**
+	 * @param phone
+	 * @param userId
+	 * @return
+	 * @throws UserNotFoundException 
+	 */
+	@Override
+	public boolean changePassword(long phone, String password) throws UserNotFoundException {
+		boolean result =  userDao.updatePassword(phone,password);
+		if(result) {
+			return result;
+		}else {
+			throw new UserNotFoundException("Invalid User Please Try again!!!"); 
+		}
+	}
+
 
 }

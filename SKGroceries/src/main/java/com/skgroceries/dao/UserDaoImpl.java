@@ -88,6 +88,43 @@ public class UserDaoImpl implements IUserDao {
 		return result;
 	}
 
+	/**
+	 * @param phone
+	 * @return
+	 */
+	@Override
+	public boolean updatePassword(long phone, String password) {
+		PreparedStatement statement = null;
+		Connection connection = DbConnection.openConnection();
+		int result =0;
+		try {
+			statement = connection.prepareStatement(UserQueries.QUERYFORCHANGEPASSWORD);
+			statement.setString(1, password);
+			statement.setLong(2, phone);
+			
+			result = statement.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if (statement != null) {
+					statement.close();
+				}
+				
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			DbConnection.closeConnection();
+		}
+		if(result == 1) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+
 }
 
 	

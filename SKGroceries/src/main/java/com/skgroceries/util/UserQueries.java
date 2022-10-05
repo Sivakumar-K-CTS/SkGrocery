@@ -11,4 +11,5 @@ public class UserQueries {
 	public static final String QUERYFORPRODUCT = "select * from products where productId=? and count >= ?";
 	public static final String QUERYFORCOUNT = "Select count from products where productId = ?";
 	public static final String QUERYFORUPDATE = "Update products set count = (?-?) where productId=?";
+	public static final String QUERYFORCHANGEPASSWORD = "Update users set password=? where MobileNumber=?";
 }

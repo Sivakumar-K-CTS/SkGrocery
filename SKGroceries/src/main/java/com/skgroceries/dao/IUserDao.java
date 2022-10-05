@@ -5,5 +5,5 @@ import com.skgroceries.model.User;
 public interface IUserDao {
 	public boolean addUser(User user);
 	public int loginValidation(String userName, String Password);
-	
+	public boolean updatePassword(long phone, String password);
 }
