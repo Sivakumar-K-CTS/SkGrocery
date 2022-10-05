@@ -1,5 +1,9 @@
 package com.skgroceries.util;
 
+/**
+ * @author SivakumarK
+ *
+ */
 public class UserQueries {
 	public static final String QUERYFORLOGIN = "select * from users where Username=? and Password = ?";
 	public static final String QUERYFORROLE = "select LoginType from users where Username = ?";

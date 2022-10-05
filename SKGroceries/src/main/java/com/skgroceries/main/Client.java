@@ -11,36 +11,32 @@ import com.skgroceries.model.Category;
 import com.skgroceries.model.Product;
 import com.skgroceries.model.User;
 import com.skgroceries.service.IProductService;
+import com.skgroceries.service.IPurchaseService;
 import com.skgroceries.service.IUserService;
 import com.skgroceries.service.ProductServiceImpl;
+import com.skgroceries.service.PurchaseServiceImpl;
 import com.skgroceries.service.UserServiceImpl;
+import com.skgroceries.util.AddProductUtil;
+import com.skgroceries.util.RegistrationUtil;
 
 public class Client {
 
+	/**
+	 * @param args
+	 */
 	public static void main(String[] args) {
 
 		Scanner sc = new Scanner(System.in);
 		IUserService userService = new UserServiceImpl();
+		IPurchaseService purchaseService = new PurchaseServiceImpl();
 		System.out.println("Welcome to SK-Groceries!!!");
 		System.out.println("Press 1 for New User (OR) Press 2 for Existing User");
 		int userType = sc.nextInt();
 		sc.nextLine();
-		if (userType == 1) {
-			System.out.println("Enter Name:");
-			String name = sc.nextLine();
-			System.out.println("Enter Username for login:");
-			String username = sc.nextLine();
-			System.out.println("Enter Password:");
-			String password = sc.nextLine();
-			System.out.println("Enter Location:");
-			String location = sc.nextLine();
-			System.out.println("Enter Mobile Number:");
-			long mobileNumber = sc.nextLong();
-
-			User user = new User(name, username, password, location, mobileNumber);
-
-			boolean result = userService.register(user);
-
+		if (userType == 1) { 
+			RegistrationUtil register = new RegistrationUtil();
+			User newUser = register.userRegistration();
+			boolean result = userService.register(newUser);
 			if (result) {
 				System.out.println("User Added successfully!!!");
 			} else {
@@ -69,23 +65,9 @@ public class Client {
 				switch (action) {
 
 				case 1:
-					System.out.println("Enter product name:");
-					String name = sc.nextLine();
-					System.out.println("Enter brand:");
-					String brand = sc.nextLine();
-					System.out.println("Choose Category(0=Grains,1=Masala,2=Fruits,3=Vegetables,4=Oil):");
-					int option = sc.nextInt();
-					Category[] categoryArr = Category.values();
-					String category = categoryArr[option].name();
-					System.out.println("Enter the Quantity (as per standard Kg's / Litters):");
-					int quantityByKgs = sc.nextInt();
-					System.out.println("Enter Price:");
-					double price = sc.nextDouble();
-					System.out.println("Enter the count of that product:");
-					int count = sc.nextInt();
-
-					Product product = new Product(name, brand, category, quantityByKgs, price, count);
-					boolean addResult = service.addProduct(product);
+					AddProductUtil addProduct = new AddProductUtil();
+					Product newProduct = addProduct.productAdder();
+					boolean addResult = service.addProduct(newProduct);
 					if (addResult) {
 						System.out.println("Product Added Successfully!!!");
 					} else {
@@ -221,7 +203,7 @@ public class Client {
 							System.out.println("Enter Quantity:");
 							int quant = sc.nextInt();
 
-							Product product = userService.productAvailablity(productID, quant);
+							Product product = purchaseService.productAvailablity(productID, quant);
 							if (product.getProductId() != null) {
 								Cart cart = new Cart();
 								double finalPrice = quant * product.getPrice();
@@ -237,19 +219,19 @@ public class Client {
 								System.out.println(
 										"Incorrect product ID or Quantity is more than the reserve. Try again!!");
 							}
-							// System.out.println(cart);
-
+							
 							System.out.println("Enter 0 to terminate or 1 to continue");
 							int loopBreaker = sc.nextInt();
 							if (loopBreaker == 0) {
 								buyLoop = loopBreaker;
 							}
 						}
+						break;
 					default:
 						System.out.println("Invalid input!!!");
 						break;
 					}
-					System.out.println("Press 0 to terminate to Billing or 1 to main menu");
+					System.out.println("Press 0 to terminate to Checkout or 1 to main menu");
 					int userResponce = sc.nextInt();
 					if (userResponce == 0) {
 						loop = 0;
@@ -265,7 +247,7 @@ public class Client {
 						System.out.println(product);
 						totalAmount += product.getPrice();
 					}
-					userService.updatePurchase(productsInCart);
+					purchaseService.updatePurchase(productsInCart);
 					System.out.println(
 							"The total amount you need to pay is " + totalAmount + "Rs.\nThankyou!! Have a nice Day!!");
 				}

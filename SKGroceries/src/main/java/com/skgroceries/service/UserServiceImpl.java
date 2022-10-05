@@ -1,12 +1,8 @@
 package com.skgroceries.service;
 
-import java.util.List;
-
 import com.skgroceries.dao.IUserDao;
 import com.skgroceries.dao.UserDaoImpl;
 import com.skgroceries.exceptions.UserNotFoundException;
-import com.skgroceries.model.Cart;
-import com.skgroceries.model.Product;
 import com.skgroceries.model.User;
 
 public class UserServiceImpl implements IUserService {
@@ -30,15 +26,5 @@ public class UserServiceImpl implements IUserService {
 		return userDao.addUser(user);
 	}
 
-	@Override
-	public Product productAvailablity(int productId, int quantity) {
-		return userDao.getPurchaseProduct(productId,quantity);
-	}
-
-	@Override
-	public void updatePurchase(List<Cart> products) {
-		userDao.updatePurchase(products);
-		
-	}
 
 }
