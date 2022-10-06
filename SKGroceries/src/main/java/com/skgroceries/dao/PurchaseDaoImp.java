@@ -29,21 +29,26 @@ public class PurchaseDaoImp implements IPurchaseDao {
 		Connection connection = DbConnection.openConnection();
 		try {
 			
-			statement = connection.prepareStatement(UserQueries.QUERYFORPRODUCT);
+			statement = connection.prepareStatement(UserQueries.QUERYFORPRODUCT,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
 			statement.setInt(1, productId);
 			statement.setInt(2, quantity);
 			
 			resultSet = statement.executeQuery();
-			while (resultSet.next()) {
+			if(!resultSet.next()) {
+				product = null;
+			}else {
+				resultSet.beforeFirst();
+				while (resultSet.next()) {
 
-				product.setProductId(resultSet.getInt(1));
-				product.setProductName(resultSet.getString(2));
-				product.setBrand(resultSet.getString(3));
-				product.setCategory(resultSet.getString(4));
-				product.setQuantityInKgs(resultSet.getInt(5));
-				product.setPrice(resultSet.getDouble(6));
-				product.setCount(resultSet.getInt(7));
-
+					product.setProductId(resultSet.getInt(1));
+					product.setProductName(resultSet.getString(2));
+					product.setBrand(resultSet.getString(3));
+					product.setCategory(resultSet.getString(4));
+					product.setQuantityInKgs(resultSet.getInt(5));
+					product.setPrice(resultSet.getDouble(6));
+					product.setCount(resultSet.getInt(7));
+			}
+			
 			}
 			
 		} catch (SQLException e) {

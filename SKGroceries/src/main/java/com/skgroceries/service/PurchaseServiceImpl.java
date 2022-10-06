@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.skgroceries.dao.IPurchaseDao;
 import com.skgroceries.dao.PurchaseDaoImp;
+import com.skgroceries.exceptions.ProductNotFoundException;
 import com.skgroceries.model.Cart;
 import com.skgroceries.model.Product;
 
@@ -21,16 +22,27 @@ public class PurchaseServiceImpl implements IPurchaseService{
 	/**
 	 * @param productId
 	 * @param quantity
-	 * @return
+	 * @return A Product Object
+	 * @throws ProductNotFoundException 
+	 * 
+	 * Action:  Will provide the response of the DAO layer to the main method.  If the response is not expected will throw the exception.
+	 * 
 	 */
 	@Override
-	public Product productAvailablity(int productId, int quantity) {
-		return purchaseDao.getPurchaseProduct(productId,quantity);
+	public Product productPurchase(int productId, int quantity) throws ProductNotFoundException {
+		Product product= purchaseDao.getPurchaseProduct(productId,quantity);
+		if(product==null) {
+			throw new ProductNotFoundException("Invalid product ID or Quantity greater than reserve!!");
+		}else {
+			return product;
+		}
 	}
 
-	
+
 	/**
 	 * @param products
+	 * 
+	 * Action: Will call the updatePurchase method which is in the DAO Implementation class.
 	 */
 	@Override
 	public void updatePurchase(List<Cart> products) {

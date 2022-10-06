@@ -203,21 +203,21 @@ public class Client {
 							System.out.println("Enter Quantity:");
 							int quant = sc.nextInt();
 
-							Product product = purchaseService.productAvailablity(productID, quant);
-							if (product.getProductId() != null) {
-								Cart cart = new Cart();
-								double finalPrice = quant * product.getPrice();
-								cart.setPrice(finalPrice);
-								cart.setProductId(product.getProductId());
-								cart.setPerPrice(product.getPrice());
-								cart.setProductName(product.getProductName());
-								cart.setQuantity(quant);
-								productsInCart.add(cart);
-								System.out.println(cart + "\nYour product is added to the cart successfully!!!");
+							Product product;
+							try {
+								product = purchaseService.productPurchase(productID, quant);
+									Cart cart = new Cart();
+									double finalPrice = quant * product.getPrice();
+									cart.setPrice(finalPrice);
+									cart.setProductId(product.getProductId());
+									cart.setPerPrice(product.getPrice());
+									cart.setProductName(product.getProductName());
+									cart.setQuantity(quant);
+									productsInCart.add(cart);
+									System.out.println(cart + "\nYour product is added to the cart successfully!!!");
 
-							} else {
-								System.out.println(
-										"Incorrect product ID or Quantity is more than the reserve. Try again!!");
+							} catch (ProductNotFoundException e) {
+								System.out.println(e.getMessage());
 							}
 							
 							System.out.println("Enter 0 to terminate or 1 to continue");
