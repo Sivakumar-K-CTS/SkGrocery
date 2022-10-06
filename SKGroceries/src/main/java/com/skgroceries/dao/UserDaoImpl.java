@@ -16,7 +16,9 @@ public class UserDaoImpl implements IUserDao {
 	
 	/**
 	 * @param user
-	 * @return
+	 * @return A boolean value of the execution of prepareStatement
+	 * 
+	 * Action: This method will add an new user record into the users table
 	 */
 	@Override
 	public boolean addUser(User user) {
@@ -59,7 +61,9 @@ public class UserDaoImpl implements IUserDao {
 	/**
 	 * @param userName
 	 * @param password
-	 * @return
+	 * @return A integer value based on the loginType
+	 * 
+	 * Action: This method will check if the username present in the table or not and return an int value based on the user role(Login Type)
 	 */
 	@Override
 	public int loginValidation(String userName, String password) {
@@ -99,7 +103,9 @@ public class UserDaoImpl implements IUserDao {
 
 	/**
 	 * @param phone
-	 * @return
+	 * @return A boolean value of the execution of prepareStatement
+	 * 
+	 * Action: This method will update the new password in the table if the provided mobile number present in the table 
 	 */
 	@Override
 	public boolean updatePassword(long phone, String password) {

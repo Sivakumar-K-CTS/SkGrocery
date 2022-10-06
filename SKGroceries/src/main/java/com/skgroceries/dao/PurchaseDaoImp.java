@@ -19,7 +19,7 @@ public class PurchaseDaoImp implements IPurchaseDao {
 	 * @param quantity
 	 * @return A Product object
 	 * 
-	 * 
+	 * Action: This method will get the requested product (as productID) if the count of the user is lesser than or equal to the count prisent in the table
 	 */
 	@Override
 	public Product getPurchaseProduct(int productId, int quantity) {
@@ -64,6 +64,8 @@ public class PurchaseDaoImp implements IPurchaseDao {
 
 	/**
 	 * @param products
+	 * 
+	 * Action: This method will subtract the user input product count from the count present in the table 
 	 */
 	@Override
 	public void updatePurchase(List<Cart> products) {
