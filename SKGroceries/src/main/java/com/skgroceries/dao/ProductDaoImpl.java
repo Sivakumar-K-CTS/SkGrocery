@@ -17,6 +17,12 @@ public class ProductDaoImpl implements IProductDao {
 	
 	IProductMapper productmapRowper = new ProductMapperImpl();
 
+	/**
+	 * @param product
+	 * @return A boolean value of the execution of prepareStatement
+	 * 
+	 * Action: This method will add a new product to the products table
+	 */
 	@Override
 	public boolean addProduct(Product product) {
 		PreparedStatement statement = null;
@@ -56,6 +62,12 @@ public class ProductDaoImpl implements IProductDao {
 		return result;
 	}
 
+	/**
+	 * @param id
+	 * @return A boolean value of the execution of prepareStatement
+	 * 
+	 * Action: This method will delete a product in the products table
+	 */
 	@Override
 	public boolean deleteProduct(int id) {
 		PreparedStatement statement = null;
@@ -86,6 +98,13 @@ public class ProductDaoImpl implements IProductDao {
 		return result;
 	}
 
+	/**
+	 * @param id
+	 * @param price
+	 * @return A boolean value of the execution of prepareStatement
+	 * 
+	 * Action: This method will Update the price of a product in the products table
+	 */
 	@Override
 	public boolean updateProduct(int id, double price) {
 		PreparedStatement statement = null;
@@ -116,6 +135,12 @@ public class ProductDaoImpl implements IProductDao {
 		return result;
 	}
 
+	/**
+	 * @param id
+	 * @return A Product object 
+	 * 
+	 * Action: This will retrieve a product record from products table based on the productID provided by the user
+	 */
 	@Override
 	public Product findById(int id) {
 		PreparedStatement statement = null;
@@ -165,6 +190,11 @@ public class ProductDaoImpl implements IProductDao {
 		return product;
 	}
 
+	/**
+	 * @return A List of Product objects 
+	 * 
+	 * Action: This will retrieve all the products from the products table
+	 */
 	@Override
 	public List<Product> findAllProducts() {
 		PreparedStatement statement = null;
@@ -195,6 +225,12 @@ public class ProductDaoImpl implements IProductDao {
 		return productList;
 	}
 
+	/**
+	 * @param category
+	 * @return A List of Product objects 
+	 * 
+	 * Action: This will retrieve all the products from the products table based on the Category provided by the user
+	 */
 	@Override
 	public List<Product> findByCategory(String category) {
 		PreparedStatement statement = null;
@@ -225,6 +261,12 @@ public class ProductDaoImpl implements IProductDao {
 		return producetList;
 	}
 
+	/**
+	 * @param brand
+	 * @return A List of Product objects 
+	 * 
+	 * Action: This will retrieve all the products from the products table based on the Brand provided by the user
+	 */
 	@Override
 	public List<Product> findByBrand(String brand) {
 		PreparedStatement statement = null;
@@ -254,6 +296,12 @@ public class ProductDaoImpl implements IProductDao {
 		return productList;
 	}
 
+	/**
+	 * @param productName
+	 * @return A List of Product objects 
+	 * 
+	 * Action: This will retrieve all the products from the products table based on part of product name given by the user 
+	 */
 	@Override
 	public List<Product> findByNameContaining(String productName) {
 		PreparedStatement statement = null;
@@ -285,6 +333,13 @@ public class ProductDaoImpl implements IProductDao {
 		return productList;
 	}
 
+	/**
+	 * @param productName
+	 * @param quantity
+	 * @return A List of Product objects
+	 * 
+	 * Action: This will retrieve all the products from the products table based on productName and quantity provided by the user
+	 */
 	@Override
 	public List<Product> findByNameAndQuantity(String productName, int quantity) {
 		PreparedStatement statement = null;

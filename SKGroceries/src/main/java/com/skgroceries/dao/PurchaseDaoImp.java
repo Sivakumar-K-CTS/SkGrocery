@@ -14,6 +14,13 @@ import com.skgroceries.util.UserQueries;
 
 public class PurchaseDaoImp implements IPurchaseDao {
 
+	/**
+	 * @param productId
+	 * @param quantity
+	 * @return A Product object
+	 * 
+	 * 
+	 */
 	@Override
 	public Product getPurchaseProduct(int productId, int quantity) {
 		PreparedStatement statement = null;
@@ -55,6 +62,9 @@ public class PurchaseDaoImp implements IPurchaseDao {
 		return product;
 	}
 
+	/**
+	 * @param products
+	 */
 	@Override
 	public void updatePurchase(List<Cart> products) {
 		PreparedStatement statement1 = null;

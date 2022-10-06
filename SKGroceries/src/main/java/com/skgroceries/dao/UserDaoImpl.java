@@ -14,6 +14,10 @@ public class UserDaoImpl implements IUserDao {
 
 
 	
+	/**
+	 * @param user
+	 * @return
+	 */
 	@Override
 	public boolean addUser(User user) {
 		PreparedStatement statement = null;
@@ -52,6 +56,11 @@ public class UserDaoImpl implements IUserDao {
 		
 	}
 
+	/**
+	 * @param userName
+	 * @param password
+	 * @return
+	 */
 	@Override
 	public int loginValidation(String userName, String password) {
 		PreparedStatement statement = null;
