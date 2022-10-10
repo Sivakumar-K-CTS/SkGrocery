@@ -25,7 +25,7 @@ public class PurchaseServiceImpl implements IPurchaseService{
 	 * @return A Product Object
 	 * @throws ProductNotFoundException 
 	 * 
-	 * Action:  Will provide the response of the DAO layer to the main method.  If the response is not expected will throw the exception.
+	 * Action:  Will provide the response of the DAO layer(method - getPurchaseProduct()) to the main method.  If the response is null will throw the exception.
 	 * 
 	 */
 	@Override

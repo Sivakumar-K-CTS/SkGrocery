@@ -12,6 +12,12 @@ public class UserServiceImpl implements IUserService {
 	 * 
 	 */
 	
+	/**
+	 * @param username
+	 * @param password
+	 * @return 
+	 * @throws UserNotFoundException
+	 */
 	@Override
 	public int loginValidation(String username, String password) throws UserNotFoundException {
 		int loginResult = userDao.loginValidation(username, password);

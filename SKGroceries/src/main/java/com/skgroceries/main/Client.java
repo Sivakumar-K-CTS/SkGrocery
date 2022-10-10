@@ -139,19 +139,22 @@ public class Client {
 					case 2:
 						System.out.println("Choose Category number(0=Grains,1=Masala,2=Fruits,3=Vegetables,4=Oil):");
 						int option = sc.nextInt();
+						if(option>4) {
+							System.out.println("Invalid Catagory...Please Try again!!!");
+						}else {
 						Category[] categoryArr = Category.values();
 						String category = categoryArr[option].name();
 
 						List<Product> productsByCategory = new ArrayList<>();
 						try {
 							productsByCategory = service.getByCategory(category);
-						} catch (ProductNotFoundException e) {
-							e.printStackTrace();
+						} catch (ProductNotFoundException | ArrayIndexOutOfBoundsException e) {
+							System.out.println(e.getMessage());
 						}
 						for (Product product : productsByCategory) {
 							System.out.println(product);
 						}
-
+						}
 						break;
 					case 3:
 						System.out.println("Enter the brand Name:");

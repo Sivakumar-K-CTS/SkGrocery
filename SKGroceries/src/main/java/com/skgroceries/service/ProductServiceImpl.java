@@ -16,7 +16,7 @@ public class ProductServiceImpl implements IProductService {
 	 * @param product
 	 * @return A boolean value from DAO
 	 * 
-	 * Action: Will provide the response of the DAO layer to the main method 
+	 * Action: Will provide the response of the DAO layer(method - addProduct()) to the main method 
 	 */
 	@Override
 	public boolean addProduct(Product product) {
@@ -27,7 +27,7 @@ public class ProductServiceImpl implements IProductService {
 	 * @param id
 	 * @return  A boolean value from DAO
 	 * 
-	 * Action: Will provide the response of the DAO layer to the main method
+	 * Action: Will provide the response of the DAO layer(method - deleteProduct()) to the main method
 	 */
 	@Override
 	public boolean deleteProduct(int id) {
@@ -39,7 +39,7 @@ public class ProductServiceImpl implements IProductService {
 	 * @param price
 	 * @return  A boolean value from DAO
 	 * 
-	 * Action: Will provide the response of the DAO layer to the main method
+	 * Action: Will provide the response of the DAO layer(method - updateProduct()) to the main method
 	 */
 	@Override
 	public boolean updateProduct(int id, double price) {
@@ -51,13 +51,13 @@ public class ProductServiceImpl implements IProductService {
 	 * @return  A boolean value from DAO
 	 * @throws ProductNotFoundException
 	 * 
-	 * Action: Will provide the response of the DAO layer to the main method. If the response is not expected will throw the exception
+	 * Action: Will provide the response of the DAO layer(method - findById()) to the main method. If the response is null, will throw the exception
 	 * 
 	 */
 	@Override
 	public Product getById(int id) throws ProductNotFoundException {
 		Product product = productDao.findById(id);
-		if (product == null) {
+		if (product.getProductId()==null) {
 			throw new ProductNotFoundException("Product Not Found!!!");
 		}
 		return product;
@@ -68,7 +68,7 @@ public class ProductServiceImpl implements IProductService {
 	 * @return A List of Product objects
 	 * @throws ProductNotFoundException
 	 * 
-	 * Action: Will provide the response of the DAO layer to the main method.
+	 * Action: Will provide the response of the DAO layer(method - getAllProducts()) to the main method.  If the response is null, will throw the exception.
 	 */
 	@Override
 	public List<Product> getAllProducts() throws ProductNotFoundException {
@@ -82,6 +82,13 @@ public class ProductServiceImpl implements IProductService {
 		
 	}
 
+	/**
+	 * @param category
+	 * @return
+	 * @throws ProductNotFoundException
+	 * 
+	 * Action:  Will provide the response of the DAO layer(method - findByCategory()) to the main method. If the response is null,  will throw the exception.
+	 */
 	@Override
 	public List<Product> getByCategory(String category) throws ProductNotFoundException {
 
@@ -102,7 +109,7 @@ public class ProductServiceImpl implements IProductService {
 	 * @return A List of Product objects
 	 * @throws ProductNotFoundException
 	 * 
-	 * Action: Will provide the response of the DAO layer to the main method. If the response is not expected will throw the exception
+	 * Action: Will provide the response of the DAO layer(method - findByBrand()) to the main method. If the response is null, will throw the exception
 	 */
 	@Override
 	public List<Product> getByBrand(String brand) throws ProductNotFoundException {
@@ -122,7 +129,7 @@ public class ProductServiceImpl implements IProductService {
 	 * @return A List of Product objects
 	 * @throws ProductNotFoundException
 	 * 
-	 * Action: Will provide the response of the DAO layer to the main method. If the response is not expected will throw the exception
+	 * Action: Will provide the response of the DAO layer(method - findByNameContaining()) to the main method. If the response is null, will throw the exception
 	 */
 	@Override
 	public List<Product> getByNameContaining(String productName) throws ProductNotFoundException {
@@ -144,7 +151,7 @@ public class ProductServiceImpl implements IProductService {
 	 * @return A List of Product objects
 	 * @throws ProductNotFoundException
 	 * 
-	 * Action: Will provide the response of the DAO layer to the main method. If the response is not expected will throw the exception
+	 * Action: Will provide the response of the DAO layer(method - findByNameAndQuantity()) to the main method. If the response is null, will throw the exception
 	 */
 	@Override
 	public List<Product> getByNameAndQuantity(String productName, int quantity) throws ProductNotFoundException {
